@@ -3,13 +3,18 @@ import { MdLocationOn } from "react-icons/md";
 import React from "react";
 import "./Header.css";
 import HeaderCategories from "./HeaderCategories";
+import { Context } from "./ContextApi";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
+  const { basketCount } = useContext(Context);
+
   return (
     <>
       <div className="header" id="header">
         <div className="header__logo">
-           <h3>ScSHop</h3>
+          <h3>ScSHop</h3>
         </div>
 
         <div className="header__location">
@@ -38,8 +43,11 @@ export default function Header() {
           </div>
 
           <div className="navigation__basket">
-            <RiShoppingBasketFill fontSize={22} />
-            <small>Sepetim</small>
+            <Link style={{ color: "whitesmoke" }} to="/basket">
+              <RiShoppingBasketFill fontSize={22} />
+            </Link>
+
+            <small>{basketCount}</small>
           </div>
         </div>
       </div>
